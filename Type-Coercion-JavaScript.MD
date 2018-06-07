@@ -57,27 +57,26 @@ JavaScript simply hooks into appropriate methods found in that object or primiti
 
 Here's a cheatsheet on what coerces to what by default:
 
-| Origin                          | Target    | Result                                       |
-|---------------------------------|-----------|----------------------------------------------|
-| Number                          | Boolean   | True, except if it's 0, or NaN               |
-| String                          | Boolean   | True, except if it's an empty string ""      |
-| undefined or null               | Boolean   | Always false                                 |
-| Object, Array, Symbol, Function | Boolean   | Always true                                  |
-| ------------------------------  | --------- | -------------------------------------------- |
-| Number, Undefined, Null, NaN    | String    | Value as string (5 --> "5")                  |
-| Boolean, Function, Symbol       | String    | Value as string (true --> "true")            |
-| Array                           | String    | String of array values separated by commas   |
-|                                 |           | Empty string if empty array                  |
-| Object                          | String    | '[object Object]' (yes, yes I know...)       |
-| ------------------------------  | --------- | -------------------------------------------- |
-| String                          | Number    | NaN, except if string represents a number    |
-|                                 |           | "5" --> 5, "0.001"                           |
-| Array                           | Number    | 0 if empty array, number if the only         |
-|                                 |           | element is a number, NaN in any other case   |
-| Object, Function                | Number    | NaN                                          |
-| null                            | Number    | 0                                            |
-| undefined                       | Number    | NaN                                          |
-| Symbol                          | Number    | THROWS!                                      |
+| Origin                          | Target  | Result                                       |
+|---------------------------------|---------|----------------------------------------------|
+| Number                          | Boolean | True, except if it's `0`, or `NaN`           |
+| String                          | Boolean | True, except if it's an empty string `""`    |
+| undefined or null               | Boolean | Always `false`                               |
+| Object, Array, Symbol, Function | Boolean | Always `true`                                |
+|                                 |         |                                              |
+| Number, Undefined, Null, NaN    | String  | Value as string (`5` --> `"5"`)              |
+| Boolean, Function, Symbol       | String  | Value as string (`true` --> `"true"`)        |
+| Array                           | String  | String of array values separated by commas   |
+|                                 |         | Empty string if empty array                  |
+| Object                          | String  | `'[object Object]'` (yes, yes I know...)     |
+|                                 |         |                                              |
+| String                          | Number  | `NaN`, except if string represents a number  |
+|                                 |         | `"5"` --> `5`, `"0.001"` --> `0.001`         |
+| Array                           | Number  | `0` if empty array, number if the only       |
+|                                 |         | element is a number, `NaN` in any other case |
+| Object, Function, undefined     | Number  | `NaN`                                        |
+| null                            | Number  | `0`                                          |
+| Symbol                          | Number  | THROWS!                                      |
 
 > Side note: I won't go too deep into operators, but a common misunderstanding among amateurs is that the "+" operator behaves unexpectedly. In fact, it does not. It's simply that the same operator acts as one of "summation" (when dealing with numbers), "concatenation" (when dealing with strings), or the "unary plus" operators depending on context. Anything else you attempt to pass to it will result in coercion to either a string or number. We'll come back to this.
 
